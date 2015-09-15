@@ -10,8 +10,8 @@
 
       body { font-family: 'Droid Serif'; }
       h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
-        font-weight: normal;
+          font-family: 'Yanone Kaffeesatz';
+          font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
     </style>
@@ -21,7 +21,7 @@
 
 class: center, middle
 
-# Title
+# Introducing Spring Cloud
 
 ---
 
@@ -33,13 +33,71 @@ class: center, middle
 
 ---
 
-# Introduction
+
+<!-- Spring Boot section -->
+# Spring Boot
+
+--
+
+- No Fuss
+
+--
+
+- Opiniated
+
+--
+
+- Twelve-Factor Suitable
+
+---
+
+### Put this in your pipe
+
+_app.groovy_
+```java
+@RestController
+class PipeStuff {
+
+    @RequestMapping("/")
+    String home() {
+        "Hello World!"
+    }
+
+}
+```
+
+---
+
+### And Smoke It
+
+```terminal
+kbowen@kenneth-devbox64:/tmp$ spring run app.groovy 
+Resolving dependencies.............
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.2.5.RELEASE)
+
+2015-09-15 10:08:17.812  INFO 17579 --- [       runner-0] o.s.boot.SpringApplication               : Starting application on kenneth-devbox64 with PID 17579 (/home/kbowen/.m2/repository/org/springframework/boot/spring-boot/1.2.5.RELEASE/spring-boot-1.2.5.RELEASE.jar started by kbowen in /tmp)
+...
+2015-09-15 10:08:30.486  INFO 17579 --- [       runner-0] o.s.boot.SpringApplication               : Started application in 13.511 seconds (JVM running for 32.411)
+```
+--
+
+![Default-aligned hello](image/hello_world.png)
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
     <script>
-      var slideshow = remark.create();
+    var slideshow = remark.create({
+        countIncrementalSlides: false
+      });
     </script>
   </body>
 </html>
