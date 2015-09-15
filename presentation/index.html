@@ -14,6 +14,9 @@
           font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .small * {
+        font-size: small !important;
+      }
     </style>
   </head>
   <body>
@@ -70,6 +73,7 @@ class PipeStuff {
 
 ### And Smoke It
 
+.small[
 ```terminal
 kbowen@kenneth-devbox64:/tmp$ spring run app.groovy 
 Resolving dependencies.............
@@ -86,6 +90,8 @@ Resolving dependencies.............
 ...
 2015-09-15 10:08:30.486  INFO 17579 --- [       runner-0] o.s.boot.SpringApplication               : Started application in 13.511 seconds (JVM running for 32.411)
 ```
+]
+
 --
 
 ![Default-aligned hello](image/hello_world.png)
