@@ -1,4 +1,4 @@
-package example.customer;
+package org.lunchtalk;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,9 +7,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CustomerServiceApplication.class)
+@SpringApplicationConfiguration(classes = HelloApplication.class)
 @WebAppConfiguration
-public class CustomerServiceApplicationTEsts {
+public class DemoApplicationTests {
 
 	@Test
 	public void contextLoads() {
