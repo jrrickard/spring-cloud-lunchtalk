@@ -30,14 +30,14 @@
 
 class: center, middle
 
-# Part Two: Cloud Infrastructure
+# Part Two: Cloud Native Applications
 
 ---
 
 # Getting Cloud Native
 
 Cloud Native Apps : 
- -  1..N Stateless Processes
+ -  1..N Stateless Processes. Share nothing, backing services.
 --
 
  -  Scale out horizontally
@@ -47,6 +47,14 @@ Cloud Native Apps :
 --
 
  -  Built expecting failure
+
+--
+ - Once again, see [12 Factor Applications](http://12factor.net/)
+---
+
+# Cloud Infrastructure
+
+![Default-aligned stack](image/netflix-stack.png)
 ---
 
 # Spring Cloud 
@@ -191,10 +199,8 @@ public class ZuulServer {
  - Round robin, response time weighted and random load balancing
  - Feign REST client for use in services
  - Has a Direct API
---
 
 ![Default-aligned stack](image/netflix-stack.png)
- 
 ---
 
 # Expecting services to fail
