@@ -31,7 +31,195 @@
 class: center, middle
 
 # Part Two: Cloud Infrastructure
-# TODO
+
+---
+
+# Getting Cloud Native
+
+Cloud Native Apps : 
+ -  1..N Stateless Processes
+--
+
+ -  Scale out horizontally
+--
+
+ -  Self-contained. Everything exposed via ports (HTTP) 
+--
+
+ -  Built expecting failure
+---
+
+# Spring Cloud 
+
+ - MANY capabilities
+ - Built on Spring Boot
+ - Annotations and starter projects
+--
+
+ - Netflix OSS, AWS, CloudFoundry, Zookeeper, Hashicorp, etc...  
+---
+
+# One more Spring Boot thing...
+
+ - App Health / Metrics crucial
+--
+
+ - Actuator adds these with no effort
+--
+
+ - Examples
+	- beans - Displays a complete list of all the Spring beans in your application.
+	- dump -  Performs a thread dump.
+	- health - Shows application health information
+	- metrics - Shows ‘metrics’ information for the current application.
+	- mappings -  Displays a collated list of all @RequestMapping paths.
+	- shutdown - Allows the application to be gracefully shutdown (not enabled by default).
+	- trace  - Displays trace information (by default the last few HTTP requests).
+
+---
+
+# Service Discovery
+
+ - Find ephemeral service instances
+--
+
+ - Netflix OSS : Eureka
+ - Hashicorp : Consul
+---
+
+# Spring Cloud : Eureka
+
+ - Eurka Server in One Line + 2 Annotations
+--
+
+```java
+@SpringBootApplication
+@EnableEurekaServer
+public class ServiceDiscoveryApplication {
+
+        public static void main(String[] args) { 
+            SpringApplication.run(ServiceDiscoveryApplication.class, args); 
+        }
+}
+```
+
+--
+
+ - Defaults:
+
+  - Will attempt to replicate
+  - Port 8761
+  - Provides a web UI (http://localhost:8761/) 
+  - Health  Stats Endpoint
+  - **All customizable (Spring Boot)**
+
+---
+
+# Spring Cloud : Eureka 
+
+ - Eureka Instance in One Line + 2 Annotations
+
+--
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+public class HelloApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(HelloApplication.class, args);
+    }
+}
+```
+
+--
+
+ - Defaults:
+
+  - Again, all customizable
+  - Will look for a eurkea server on localhost:8761 
+  - Will identify itself as appname+hostname (need to override if multiple svcs on one host):
+
+```yaml
+eureka:
+  instance:
+    preferIpAddress: true
+    metadataMap:
+          instanceId: {CUSTOM_VALUE}
+```
+---
+
+# Routing / API Gateway
+
+ - Many instances
+ - Find them via service discovery
+ - Enter API Gateway
+--
+
+ - Netflix OSS : Zuul
+ - Hashicorp : consul + consul-template + nginx/etc 
+---
+
+# Spring Cloud - Zuul
+
+ - Zuul Server in One Line + 2 Annotations
+
+```java
+@EnableZuulProxy
+@SpringBootApplication
+public class ZuulServer {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ZuulServer.class, args);
+    }
+}
+```
+---
+
+# Load Balancing
+
+ - Share the load among ephemeral services
+--
+ 
+ - Netflix : Ribbon 
+ - Hashicorp : consul + consul-template + HAProxy
+---
+
+# Spring Cloud : Ribbon
+
+ - Ribbon: Load balancer used by Zuul
+ - Round robin, response time weighted and random load balancing
+ - Feign REST client for use in services
+ - Has a Direct API
+--
+
+![Default-aligned stack](image/netflix-stack.png)
+ 
+---
+
+# Expecting services to fail
+
+ - Treat everything as remote
+ - Implement "circuit breaker"
+ - Netflix : Hystrix
+  - Circuit Breaker
+  - Metric stream
+ - Zuul and Eureka automatically use
+ - Hystrix Dashboard (monitor metrics in real time)
+---
+
+# Let's build something 
+
+---
+
+# Some more reading
+
+ - http://12factor.net/
+ - http://projects.spring.io/spring-cloud/
+ - http://pivotal.io/platform/migrating-to-cloud-native-application-architectures-ebook
+ - http://www.slideshare.net/adrianco/gluecon-tutorial-details-2013
+
+---
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
