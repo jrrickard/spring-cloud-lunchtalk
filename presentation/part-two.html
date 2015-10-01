@@ -89,6 +89,8 @@ Cloud Native Apps :
 # Service Discovery
 
  - Find ephemeral service instances
+ - Phone book for services
+ - Programmatic interaction => services find services
 --
 
  - Netflix OSS : Eureka
@@ -168,6 +170,18 @@ eureka:
  - Hashicorp : consul + consul-template + nginx/etc 
 ---
 
+# Zuul 
+ - Customizable rules/filters
+ - Pre/Post processing
+ - Netflix uses for:
+  - Authentication / Security Filtering
+  - Dynamic Routing
+  - Service Migration
+  - Traffic managment
+  - lots more
+
+---
+
 # Spring Cloud - Zuul
 
  - Zuul Server in One Line + 2 Annotations
@@ -182,6 +196,15 @@ public class ZuulServer {
     }
 }
 ```
+--
+
+ - Defaults:
+
+  - By default will attempt to route everything
+  - Port 8765
+  - Create new filters by making a @Bean that extends ZuulFilter (auto discovered)
+  - Automatically uses Ribbon and Hystrix (we'll see those next)
+  - **All customizable (Spring Boot)**
 ---
 
 # Load Balancing
