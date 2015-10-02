@@ -13,12 +13,12 @@ eureka:
   instance:
     preferIpAddress: true
 
-zuul:
-  ignoredServices: '*'
-  routes:
-    users:
-     path: /hello/**
-     serviceId: HELLO
+#zuul:
+#  ignoredServices: '*'
+#  routes:
+#    users:
+#     path: /hello/**
+#     serviceId: HELLO
 
 server:
   port: 8765
