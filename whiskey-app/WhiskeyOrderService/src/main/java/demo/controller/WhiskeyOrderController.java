@@ -21,7 +21,7 @@ public class WhiskeyOrderController {
     WhiskeyOrderRepo repo;
 
     @Autowired
-    InventoryService client;
+    InventoryServiceClientImpl client;
 
     @RequestMapping(value="/order", consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method=RequestMethod.GET)
     public Iterable<WhiskeyOrder> getWhiskey() {
