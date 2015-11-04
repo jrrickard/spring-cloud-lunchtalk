@@ -1,6 +1,6 @@
 # Intro
 
-This repository contains a number of components that could represent a notional CMP stack using Spring Cloud and the Netflix OSS components. These are wrapped as Spring Boot applications for ease of deployment. Additionally, a Dockerfile is provided for each. 
+This repository contains a number of components that could represent a whiskey purchasing system  using Spring Cloud and the Netflix OSS components. These are wrapped as Spring Boot applications for ease of deployment. Additionally, a Dockerfile is provided for each. 
 
 For each service, build the jar with :
 
