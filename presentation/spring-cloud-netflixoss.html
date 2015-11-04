@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Awesome Presentation</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <style type="text/css">
+    <title>Spring Cloud Part 2</title>
+    <meta charset="utf-8">
+    <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
       body { font-family: 'Droid Serif'; }
       h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
-        font-weight: normal;
+          font-family: 'Yanone Kaffeesatz';
+          font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .small * {
+        font-size: small !important;
+      }
+      .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        left: 3em;
+      }
     </style>
   </head>
   <body>
@@ -29,11 +38,211 @@ class: center, middle
 
 ---
 
+# Cloud Infrastructure
+
+![Default-aligned stack](image/netflix-stack.png)
+---
+
+# Spring Cloud 
+
+ - MANY capabilities
+ - Built on Spring Boot
+ - Annotations and starter projects
+--
+
+ - Netflix OSS, AWS, CloudFoundry, Zookeeper, Hashicorp, etc...  
+---
+
+# One more Spring Boot thing...
+
+ - App Health / Metrics crucial
+--
+
+ - Actuator adds these with no effort
+--
+
+ - Examples
+	- beans - Displays a complete list of all the Spring beans in your application.
+	- dump -  Performs a thread dump.
+	- health - Shows application health information
+	- metrics - Shows ‘metrics’ information for the current application.
+	- mappings -  Displays a collated list of all @RequestMapping paths.
+	- shutdown - Allows the application to be gracefully shutdown (not enabled by default).
+	- trace  - Displays trace information (by default the last few HTTP requests).
+
+---
+
+# Service Discovery
+
+ - Find ephemeral service instances
+ - Phone book for services
+ - Programmatic interaction => services find services
+--
+
+ - Netflix OSS : Eureka
+---
+
+# Spring Cloud : Eureka
+
+ - Eurka Server in One Line + 2 Annotations
+--
+
+```java
+@SpringBootApplication
+@EnableEurekaServer
+public class ServiceDiscoveryApplication {
+
+        public static void main(String[] args) { 
+            SpringApplication.run(ServiceDiscoveryApplication.class, args); 
+        }
+}
+```
+
+--
+
+ - Defaults:
+
+  - Will attempt to replicate
+  - Port 8761
+  - Provides a web UI (http://localhost:8761/) 
+  - Health  Stats Endpoint
+  - **All customizable (Spring Boot)**
+
+---
+
+# Spring Cloud : Eureka 
+
+ - Eureka Instance in One Line + 2 Annotations
+
+--
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+public class HelloApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(HelloApplication.class, args);
+    }
+}
+```
+
+--
+
+ - Defaults:
+
+  - Again, all customizable
+  - Will look for a eurkea server on localhost:8761 
+  - Will identify itself as appname+hostname (need to override if multiple svcs on one host):
+
+```yaml
+eureka:
+  instance:
+    preferIpAddress: true
+    metadataMap:
+          instanceId: {CUSTOM_VALUE}
+```
+---
+
+# Routing / API Gateway
+
+ - Many instances
+ - Find them via service discovery
+ - Enter API Gateway
+--
+
+ - Netflix OSS : Zuul
+---
+
+# Zuul 
+ - Customizable rules/filters
+ - Pre/Post processing
+ - Netflix uses for:
+  - Authentication / Security Filtering
+  - Dynamic Routing
+  - Service Migration
+  - Traffic managment
+  - lots more
+
+---
+
+# Spring Cloud - Zuul
+
+ - Zuul Server in One Line + 2 Annotations
+
+```java
+@EnableZuulProxy
+@SpringBootApplication
+public class ZuulServer {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ZuulServer.class, args);
+    }
+}
+```
+--
+
+ - Defaults:
+
+  - By default will attempt to route everything
+  - Port 8765
+  - Create new filters by making a @Bean that extends ZuulFilter (auto discovered)
+  - Automatically uses Ribbon and Hystrix (we'll see those next)
+  - **All customizable (Spring Boot)**
+---
+
+# Load Balancing
+
+ - Share the load among ephemeral services
+--
+ 
+ - Netflix : Ribbon 
+---
+
+# Spring Cloud : Ribbon
+
+ - Ribbon: Load balancer used by Zuul
+ - Round robin, response time weighted and random load balancing
+ - Feign REST client for use in services
+ - Has a Direct API
+
+![Default-aligned stack](image/netflix-stack.png)
+---
+
+# Expecting services to fail
+
+ - Treat everything as remote
+ - Implement "circuit breaker"
+ - Netflix : Hystrix
+  - Circuit Breaker
+  - Metric stream
+ - Zuul and Eureka automatically use
+ - Hystrix Dashboard (monitor metrics in real time)
+---
+
+# Feign - Declarative REST Clients
+
+ - One way: Spring REST Template 
+ - Lots of boiler plate code.....
+ --
+ Better way...
+ - Netflix Feign: Declarative REST clients
+
+---
+
+# Let's build something 
+
+---
+
+---
+
     </textarea>
-    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
-    <script type="text/javascript">
-      var slideshow = remark.create();
+    <script>
+    var slideshow = remark.create({
+        countIncrementalSlides: false
+      });
     </script>
   </body>
 </html>
