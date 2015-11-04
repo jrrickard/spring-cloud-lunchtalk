@@ -14,21 +14,177 @@
         font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        left: 3em;
+      }
     </style>
   </head>
   <body>
     <textarea id="source">
 
-class: center, middle
-
 # Spring Boot
 
+--
+
+- No Fuss
+
+--
+
+- Twelve-Factor Suitable
+
+--
+
+- Opinionated*
+
+--
+
+.footnote[*but, quickly gets out of the way as needed]
+
+---
+
+## Spring CLI
+
+--
+
+- fastest way to get started with Spring Boot
+
+--
+
+- twelve-factor friendly packaging
+
+--
+
+- testing
+
+--
+
+- encourages best practices
+
+--
+
+- rapid development
+
+---
+
+class: center, middle
+
+# _Radically Fast_
+
+---
+
+### Put this in your pipe
+
+single file named: _app.groovy_
+```java
+@RestController
+class PipeStuff {
+
+    @RequestMapping("/")
+    String home() {
+        "Hello World!"
+    }
+
+}
+```
+
+---
+
+### And Smoke It
+
+.small[
+```terminal
+kbowen@kenneth-devbox64:/tmp$ spring run app.groovy 
+Resolving dependencies.............
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.2.5.RELEASE)
+
+2015-09-15 10:08:17.812  INFO 17579 --- [       runner-0] o.s.boot.SpringApplication               : Starting application on kenneth-devbox64 with PID 17579 (/home/kbowen/.m2/repository/org/springframework/boot/spring-boot/1.2.5.RELEASE/spring-boot-1.2.5.RELEASE.jar started by kbowen in /tmp)
+...
+2015-09-15 10:08:30.486  INFO 17579 --- [       runner-0] o.s.boot.SpringApplication               : Started application in 13.511 seconds (JVM running for 32.411)
+```
+]
+
+--
+
+![Default-aligned hello](image/hello_world.png)
+
+---
+
+# Bootstrapping App Development
+
+---
+
+Impressive Number of Archetypes
+
+.small[```terminal
+
+kbowen@kenneth-devbox64:~$ spring init --list
+
++-----------------------------------+--------------------------------------------------------------------------------------------------+
+| Id                                | Description                                                                                      |
++-----------------------------------+--------------------------------------------------------------------------------------------------+
+| actuator                          | Production ready features to help you monitor and manage your application                        |
+| actuator-docs                     | API documentation for the Actuator endpoints                                                     |
+| amqp                              | Support for the Advanced Message Queuing Protocol via spring-rabbit                              |
+| aop                               | Support for aspect-oriented programming including spring-aop and AspectJ                         |
+| batch                             | Support for Spring Batch including HSQLDB database                                               |
+| cache                             | Support for Spring's Cache abstraction                                                           |
+| cloud-aws                         | Support for spring-cloud-aws                                                                     |
+| cloud-aws-jdbc                    | Support for spring-cloud-aws-jdbc                                                                |
+| cloud-aws-messaging               | Support for spring-cloud-aws-messaging                                                           |
+| cloud-bus-amqp                    | Support for spring-cloud-bus-amqp                                                                |
+| cloud-cloudfoundry-discovery      | Support for spring-cloud-cloudfoundry-discovery (service discovery with Cloud Foundry)           |
+| cloud-cluster-hazelcast           | Support for spring-cloud-cluster-hazelcast (leadership election and global state with Hazelcast) |
+| cloud-cluster-redis               | Support for spring-cloud-cluster-redis (leadership election and global state with Redis)         |
+| cloud-cluster-zookeeper           | Support for spring-cloud-cluster-zookeeper (leadership election and global state with Zookeeper) |
+| cloud-config-client               | Support for spring-cloud-config Client                                                           |
+| cloud-config-server               | Support for spring-cloud-config Server                                                           |
+| cloud-connectors                  | Simplifies connecting to services in cloud platforms                                             |
+| cloud-eureka                      | Support for spring-cloud-netflix Eureka                                                          |
+| cloud-eureka-server               | Support for spring-cloud-netflix Eureka Server                                                   |
+| cloud-feign                       | Support for spring-cloud-netflix Feign                                                           |
+| cloud-hystrix                     | Support for spring-cloud-netflix Hystrix                                                         |
+| cloud-hystrix-dashboard           | Support for spring-cloud-netflix Hystrix Dashboard                                               |
+| cloud-oauth2                      | Support for spring-cloud-security OAuth2                                                         |
+| cloud-ribbon                      | Support for spring-cloud-netflix Ribbon                                                          |
+| cloud-security                    | Support for spring-cloud-security                                                                |
+| cloud-starter                     | Support for spring-cloud-context (e.g. Bootstrap context and @RefreshScope)                      |
+
+...
+
+
+```]
+
+--
+
+__80 Archetypes in all!__ .small[(today)]
+
+---
+
+background-image: url(image/spring_start.png)
+
+---
+
+class: center, middle
+
+# Let's Build an App
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
     </script>
     <script type="text/javascript">
-      var slideshow = remark.create();
+      var slideshow = remark.create({
+        countIncrementalSlides: false
+      });
     </script>
   </body>
 </html>
