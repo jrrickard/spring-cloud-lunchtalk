@@ -1,0 +1,12 @@
+eureka:
+  instance:
+    preferIpAddress: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_SERVICE_PORT_8761_TCP_ADDR:localhost}:8761/eureka/
+    healthcheck:
+      enabled: true
