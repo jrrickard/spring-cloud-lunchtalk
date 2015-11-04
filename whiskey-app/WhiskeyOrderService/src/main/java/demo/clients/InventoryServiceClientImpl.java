@@ -9,25 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventoryServiceClientImpl {
 
-    @Autowired
-    InventoryService inventoryService;
 
+    //Auto Wire the Feign Client
+    //Implement the contract, hystrix commands
 
-    @HystrixCommand
-    public Iterable<Whiskey> getWhiskey() {
-        return inventoryService.getWhiskey();
-    }
-
-
-    @HystrixCommand
-    public Whiskey getWhiskey(String uuid) {
-        return inventoryService.getWhiskey(uuid);
-    }
-
-
-    @HystrixCommand
-    public Whiskey updateWhiskey(String uuid, Whiskey whiskey) {
-        return inventoryService.updateWhiskey(uuid,whiskey);
-    }
 
 }

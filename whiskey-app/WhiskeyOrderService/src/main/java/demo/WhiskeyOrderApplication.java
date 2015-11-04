@@ -7,9 +7,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableEurekaClient
-@EnableFeignClients
-@EnableCircuitBreaker
+//Add Eureka Client
+//Add Circuit Breakers
+//Add Feign Clients
 public class WhiskeyOrderApplication {
 
     public static void main(String[] args) {
