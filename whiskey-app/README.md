@@ -21,7 +21,7 @@ If you'd like to build your own to run with Rocket or something, follow the exam
 From the service-discovery directory:
 
 ```
-docker build -t cmp/eureka .
+docker build -t whiskey/eureka .
 ```
 
 ## Running the container
@@ -31,7 +31,7 @@ The other images require a link to the eureka server, so to use the commands bel
 You also want to port bind it so it can be accessed externally. If you're using something like kubernetes, make it a service so it's available externally and linkable to other containers. 
 
 ```
-docker run -d -p 8761:8761 --name eureka cmp/eureka
+docker run -d -p 8761:8761 --name eureka whiskey/eureka
 ```
 
 ## Zuul
@@ -47,7 +47,7 @@ mvn clean install -DskipTests=trye
 From the zuul directory:
 
 ```
-docker build -t cmp/zuul .
+docker build -t whiskey/zuul .
 ```
 
 ### Running the container
@@ -57,7 +57,7 @@ This container requires the eureka service to be linked as below to set the envi
 You also want to port bind this (or the equivalent) so that you can access it externally. 
 
 ```
-docker run -d -p 8765:8765 -e "DOCKER_HOST=10.25.49.26" --name zuul --link eureka:eureka_service cmp/zuul
+docker run -d -p 8765:8765 -e "DOCKER_HOST=10.25.49.26" --name zuul --link eureka:eureka_service whiskey/zuul
 ```
 
 ## Hystrix
@@ -67,7 +67,7 @@ docker run -d -p 8765:8765 -e "DOCKER_HOST=10.25.49.26" --name zuul --link eurek
 From the hystrix-dashboard directory:
 
 ```
-docker build -t cmp/hystrix .
+docker build -t whiskey/hystrix .
 ```
 
 ### Running the container
@@ -75,7 +75,7 @@ docker build -t cmp/hystrix .
 This container requires the eureka service to be linked as below to set the environment variables correctly.
 
 ```
-docker run -d -p 8081:8081 --link eureka:eureka_service cmp/hystrix
+docker run -d -p 8081:8081 --link eureka:eureka_service whiskey/hystrix
 ```
 
 ## Hello World Service
@@ -85,7 +85,7 @@ docker run -d -p 8081:8081 --link eureka:eureka_service cmp/hystrix
 From the hello directory:
 
 ```
-docker build -t cmp/hello .
+docker build -t whiskey/hello .
 ```
 
 ### Running the container
@@ -93,7 +93,7 @@ docker build -t cmp/hello .
 This container requires the eureka service to be linked as below to set the environment variables correctly. Additionally, it currently expects an environment variable specifying what port to run on. This enables multiple instances to run on a single host without any networking overlay. 
 
 ```
-docker run -d -e "PORT=9005" -e "DOCKER_HOST=10.25.49.26" --expose 9005 --link eureka:eureka_service cmp/hello
+docker run -d -e "PORT=9005" -e "DOCKER_HOST=10.25.49.26" --expose 9005 --link eureka:eureka_service whiskey/hello
 ```
 
 ## Running things
