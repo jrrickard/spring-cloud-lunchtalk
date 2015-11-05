@@ -11,14 +11,18 @@ Presentation materials created with [remarkjs](https://github.com/gnab/remark).
   Joshua Long. 24 October 2015
 - [Migrating to Cloud Native Architectures](http://pivotal.io/platform/migrating-to-cloud-native-application-architectures-ebook). Matt
   Stine. Free eBook.
+- [Spring Boot Reference](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/).
+- [Spring Cloud Project](http://projects.spring.io/spring-cloud/).
 
 ## Code examples
-All code examples are based on projects created with [start.spring.io](https://start.spring.io). 
+All code examples are based on projects created with [start.spring.io](https://start.spring.io).
 
-Currently using: 
+### Currently using:
 
-* Eureka
-* Zuul 
-* Hystrix Dashboard
+- Eureka
+- Zuul
+- Hystrix Dashboard
 
+### Running the Examples
 
+TODO
